@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "ostream": "cpp",
+        "iostream": "cpp"
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/glenmerlin/CS 235/CS235Lab9",
+            "binaryPath": "/home/glenmerlin/CS 235/CS235Lab9/wordcounter",
+            "binaryArgs": ["test.txt"]
+        }
+    ]
+}
