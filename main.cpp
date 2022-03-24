@@ -10,10 +10,9 @@ using namespace std;
 list<string> words;
 set<string> uniqueWords;
 
-void fileRead(char* argv[]){
+void fileRead(const char* filename){
     string next_line;
-        ifstream in(argv[1]);
-        string fileName = argv[1];
+        ifstream in(filename);
         while (getline(in, next_line)){
             istringstream iss(next_line);
             string word;
@@ -88,31 +87,40 @@ void mostLeastCommon(list<string> words){
         
     }
 
-    cout << "The most common word is: '" << mostCommon << "' with " << largestCount << " occurances" << endl;
-    cout << "The least common word is: '" << leastCommon << "' with " << smallestCount << " occurances" << endl << endl;
+    cout << "The most common word is: '" << mostCommon << "' with " << largestCount << " occurrences" << endl;
+    cout << "The least common word is: '" << leastCommon << "' with " << smallestCount << " occurrences" << endl << endl;
 }
 
 int main(int argc, char *argv[]){
+    
     if (argv[1] == NULL){
         cerr << "To run this program please supply a valid text file like so: " << endl << "./wordcounter 1Nephi.txt" << endl;
         return 1;
     }
+    int i = 1;
+    while (argv[i] != NULL) {
+        cout << argv[i] << endl << "---------------------------" << endl;
+        
+        fileRead(argv[i]);
+        cout << "Unique words found: " << uniqueWords.size() << endl;
+        cout << "Total words found: " << words.size() << endl << endl;
+        
+        int averageSize = averageCount(words);
+        cout << "Average word length: " << averageSize << " characters" << endl << endl;
 
-    
-    cout << argv[1] << endl << "---------------------------" << endl;
-    
-    fileRead(argv);
-    cout << "Unique words found: " << uniqueWords.size() << endl;
-    cout << "Total words found: " << words.size() << endl << endl;
-    
-    int averageSize = averageCount(words);
-    cout << "Average word length: " << averageSize << " characters" << endl << endl;
+        mostLeastCommon(words);
 
-    mostLeastCommon(words);
+        double time = words.size()/300;
+        cout << "It would take the average college student aproximately " << time << " min ";
+        cout << "or " << fixed << setprecision(2) << time/60 << " hrs to read" << endl << endl;
 
-    double time = words.size()/300;
-    cout << "It would take the average college student aproximately " << time << " min ";
-    cout << "or " << fixed << setprecision(2) << time/60 << " hrs to read" << endl << endl;
-    return 0;
+        time = words.size()/75;
+        cout << "If you typed at 75WPM it would take you " << time << " min or about " << fixed << setprecision(2) << time/60 <<" hrs to type up this document" << endl << endl;
+        words.erase(words.begin(), words.end());
+        uniqueWords.erase(uniqueWords.begin(), uniqueWords.end());
+        i++;
+
+    }
+    return 0;    
 }
 

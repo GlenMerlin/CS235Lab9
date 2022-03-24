@@ -1,4 +1,4 @@
-make all --dry-run --keep-going --print-directory
+make all --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/glenmerlin/CS 235/CS235Lab9'
 g++ -g main.cpp -o wordcounter
 make: Leaving directory '/home/glenmerlin/CS 235/CS235Lab9'
